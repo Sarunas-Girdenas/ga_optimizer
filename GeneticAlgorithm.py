@@ -160,7 +160,7 @@ class GeneticAlgorithm():
         c. generate an offspring as follows: G = gamma * G1 + (1 - gamma) * G2
         """
         
-        pass
+        raise NotImplementedError
     
     def run(self):
         """Run Genetic Algorithm
@@ -173,5 +173,6 @@ class GeneticAlgorithm():
         self.best_populations = self.rank_populations()
         
         # 3. Crossover
-        
+        self.crossover()
+
         return None

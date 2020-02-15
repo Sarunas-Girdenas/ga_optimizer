@@ -4,6 +4,9 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class Chromosome():
+    """This is Chrosome type which is immutable
+    after instatation.
+    """
 
     chromosome: Dict
 
