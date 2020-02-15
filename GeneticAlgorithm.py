@@ -28,8 +28,8 @@ class GeneticAlgorithm():
         
         # constraints - HY - no more than 0.01 and IG no more than 0.01
         
-        ig_size = self.data.query("bond_type == 'IG'").shape[0]
-        hy_size = self.data.query("bond_type == 'HY'").shape[0]
+        ig_size = self.data.query("instrument_type == 'A'").shape[0]
+        hy_size = self.data.query("instrument_type == 'B'").shape[0]
         
         # generate random guess
         d = hy_size + 2 * ig_size
@@ -42,8 +42,8 @@ class GeneticAlgorithm():
         
         # create generators
         constrained_initial_weights = {}
-        constrained_initial_weights['hy'] = iter(hy_)
-        constrained_initial_weights['ig'] = iter(ig_)
+        constrained_initial_weights['A'] = iter(hy_)
+        constrained_initial_weights['B'] = iter(ig_)
 
         return constrained_initial_weights
 
@@ -71,7 +71,7 @@ class GeneticAlgorithm():
                                         'yield': row[1]['yield'],
                                         'min_weight': 0,
                                         'max_weight': max_weight,
-                                        'weight': round(next(random_weights['hy']), 3)})
+                                        'weight': round(next(random_weights['B']), 3)})
 
             if row[1]['rating'] <= 10:
                 max_weight = 0.02
@@ -79,7 +79,7 @@ class GeneticAlgorithm():
                                         'yield': row[1]['yield'],
                                         'min_weight': 0,
                                         'max_weight': max_weight,
-                                        'weight': round(next(random_weights['ig']), 3)})
+                                        'weight': round(next(random_weights['A']), 3)})
 
             initial_population.append(chromosome)
 
